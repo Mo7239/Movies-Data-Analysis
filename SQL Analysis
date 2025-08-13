@@ -1,0 +1,27 @@
+-- How many films in each category
+SELECT cat.name , COUNT(fc.film_id) AS film_counts
+FROM category cat
+INNER JOIN film_category fc ON cat.category_id = fc.category_id
+GROUP BY cat.name 
+ORDER BY COUNT(fc.film_id) DESC;
+
+-- Top 5 actors according to the number of films
+SELECT ac.first_name , ac.last_name , COUNT(fa.film_id) AS film_counts
+from film_actor fa
+INNER JOIN actor ac ON fa.actor_id = ac.actor_id
+GROUP BY  ac.actor_id
+ORDER BY film_counts DESC
+LIMIT 5;
+
+
+-- What is the revenue per each store
+SELECT store_id ,  SUM(amount) as Total_revenue
+FROM store s 
+INNER JOIN  payment p ON s.manager_staff_id = p.staff_id
+GROUP BY store_id 
+ORDER BY Total_revenue DESC;
+
+-- Top 5 films have revenue
+
+
+
