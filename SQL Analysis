@@ -38,3 +38,41 @@ INNER JOIN inventory inv ON inv.inventory_id = ren.inventory_id
 INNER JOIN film f ON f.film_id = inv.film_id
 GROUP  BY  title 
 ORDER BY avg_revenue DESC;
+
+-- How many rentals per customer
+SELECT cust.first_name , cust.last_name ,COUNT(rental_id) AS total_rentals
+FROM customer cust
+INNER JOIN rental ren ON ren.customer_id = cust.customer_id
+GROUP BY cust.customer_id
+ORDER BY total_rentals DESC;
+
+-- What is the most profitable rating
+SELECT f.rating, SUM(p.amount) AS total_revenue
+FROM payment p
+JOIN rental r ON p.rental_id = r.rental_id
+JOIN inventory i ON r.inventory_id = i.inventory_id
+JOIN film f ON i.film_id = f.film_id
+GROUP BY f.rating
+ORDER BY total_revenue DESC;
+
+-- Customers who spent more than 100$
+SELECT cust.first_name , cust.last_name , SUM(pay.amount) AS total_revenue
+FROM customer cust
+INNER JOIN payment pay ON cust.customer_id = pay.customer_id
+GROUP BY cust.customer_id
+HAVING total_revenue > 100
+ORDER BY total_revenue DESC;
+
+-- What is the average rental period for each rating?
+SELECT rating , AVG(rental_duration) 
+FROM film 
+GROUP BY rating
+ORDER BY AVG(rental_duration) DESC;
+
+-- Percentage of active customers
+SELECT 
+    CASE WHEN active = 1 THEN 'Active' ELSE 'Non Active' END AS status,
+    COUNT(*) AS customer_count,
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS percentage
+FROM customer
+GROUP BY active;
