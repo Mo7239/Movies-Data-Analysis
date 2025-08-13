@@ -10,9 +10,10 @@
  the analysis process later. */
 
  /*
-	==============================
-		   Basic Questions (EDA)
-  ============================== */ 
+	================================
+	     Basic Questions (EDA)
+    ================================
+*/ 
     
 -- get overview about film table
 SELECT * FROM film;
