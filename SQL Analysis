@@ -13,7 +13,6 @@ GROUP BY  ac.actor_id
 ORDER BY film_counts DESC
 LIMIT 5;
 
-
 -- What is the revenue per each store
 SELECT store_id ,  SUM(amount) as Total_revenue
 FROM store s 
@@ -22,6 +21,20 @@ GROUP BY store_id
 ORDER BY Total_revenue DESC;
 
 -- Top 5 films have revenue
+SELECT title , SUM(pay.amount) as Total_revenue
+FROM payment pay
+INNER JOIN rental ren ON ren.rental_id = pay.rental_id
+INNER JOIN inventory inv ON inv.inventory_id = ren.inventory_id
+INNER JOIN film f ON f.film_id = inv.film_id
+GROUP  BY  title 
+ORDER BY Total_revenue DESC
+LIMIT 5;
 
-
-
+-- Average rental per movie
+SELECT title , AVG(pay.amount) as avg_revenue
+FROM payment pay
+INNER JOIN rental ren ON ren.rental_id = pay.rental_id
+INNER JOIN inventory inv ON inv.inventory_id = ren.inventory_id
+INNER JOIN film f ON f.film_id = inv.film_id
+GROUP  BY  title 
+ORDER BY avg_revenue DESC;
