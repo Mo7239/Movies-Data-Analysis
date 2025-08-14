@@ -110,7 +110,7 @@ FROM payment
 INNER JOIN  max_date mad ON payment_date>=DATE_SUB( mad.max_date, INTERVAL 12 MONTH)
 GROUP BY month;
 
---
+-- Top 3 clients per country
 WITH ranked_customers  AS ( 
 	SELECT country , cust.first_name , cust.last_name ,
 	SUM(p.amount) AS total_spent,
@@ -124,3 +124,15 @@ WITH ranked_customers  AS (
     
 SELECT * FROM ranked_customers
 WHERE rnk <= 3; 
+
+-- Most 5 profitable actors
+SELECT a.first_name, a.last_name, SUM(p.amount) AS revenue
+FROM actor a
+JOIN film_actor fa ON a.actor_id = fa.actor_id
+JOIN film f ON fa.film_id = f.film_id
+JOIN inventory i ON f.film_id = i.film_id
+JOIN rental r ON i.inventory_id = r.inventory_id
+JOIN payment p ON r.rental_id = p.rental_id
+GROUP BY a.actor_id
+ORDER BY revenue DESC
+LIMIT 5;
