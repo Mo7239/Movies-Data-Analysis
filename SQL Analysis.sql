@@ -76,3 +76,26 @@ SELECT
     ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS percentage
 FROM customer
 GROUP BY active;
+
+-- Sort customers by total spending
+SELECT cust.first_name , cust.last_name ,
+ SUM(pay.amount) AS total_revenue,
+ RANK() OVER(ORDER BY SUM(pay.amount) DESC) AS spending_rank
+FROM customer cust
+INNER JOIN payment pay ON cust.customer_id = pay.customer_id
+GROUP BY cust.customer_id;
+
+-- Highest-grossing film in each category
+WITH category_revenue AS ( 
+	SELECT cat.name , f.title , SUM(p.amount) AS total_revenue,
+	RANK() OVER(PARTITION BY cat.name ORDER BY SUM(p.amount) DESC) AS rnk
+	FROM payment p 
+	INNER JOIN rental ren ON ren.rental_id = p.rental_id
+	INNER JOIN inventory inv ON inv.inventory_id = ren.inventory_id
+	INNER JOIN film f ON f.film_id = inv.film_id
+	INNER JOIN film_category fc ON fc.film_id = f.film_id
+	INNER JOIN category cat ON cat.category_id = fc.category_id
+	GROUP BY cat.name , f.title)
+
+SELECT name , title , total_revenue FROM category_revenue
+WHERE rnk = 1;
