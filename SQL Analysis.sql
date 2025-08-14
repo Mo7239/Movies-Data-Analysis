@@ -99,3 +99,15 @@ WITH category_revenue AS (
 
 SELECT name , title , total_revenue FROM category_revenue
 WHERE rnk = 1;
+
+-- Monthly revenue for the last year
+WITH max_date AS(
+	SELECT MAX(payment_date) AS max_date FROM payment ) -- to get the last year in the data
+    
+SELECT DATE_FORMAT(payment_date,"%Y-%M") AS month,
+SUM(amount) AS monthly_revenue 
+FROM payment
+INNER JOIN  max_date mad ON payment_date>=DATE_SUB( mad.max_date, INTERVAL 12 MONTH)
+GROUP BY month;
+
+-- 
