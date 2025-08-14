@@ -110,4 +110,17 @@ FROM payment
 INNER JOIN  max_date mad ON payment_date>=DATE_SUB( mad.max_date, INTERVAL 12 MONTH)
 GROUP BY month;
 
--- 
+--
+WITH ranked_customers  AS ( 
+	SELECT country , cust.first_name , cust.last_name ,
+	SUM(p.amount) AS total_spent,
+	RANK() OVER(PARTITION BY country ORDER BY SUM(p.amount) DESC) AS rnk
+	FROM payment p
+	INNER JOIN customer cust ON cust.customer_id = p.customer_id
+	INNER JOIN address addr ON addr.address_id = cust.address_id
+	INNER JOIN city c ON c.city_id = addr.city_id
+	INNER JOIN country coun ON coun.country_id = c.country_id
+	GROUP BY country , cust.customer_id)
+    
+SELECT * FROM ranked_customers
+WHERE rnk <= 3; 
