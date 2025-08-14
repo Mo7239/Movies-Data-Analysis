@@ -136,3 +136,25 @@ JOIN payment p ON r.rental_id = p.rental_id
 GROUP BY a.actor_id
 ORDER BY revenue DESC
 LIMIT 5;
+
+-- Average rental term by country
+SELECT co.country, AVG(DATEDIFF(r.return_date, r.rental_date)) AS avg_rental_days
+FROM rental r
+JOIN customer c ON r.customer_id = c.customer_id
+JOIN address a ON c.address_id = a.address_id
+JOIN city ci ON a.city_id = ci.city_id
+JOIN country co ON ci.country_id = co.country_id
+GROUP BY co.country
+ORDER BY avg_rental_days DESC;
+
+-- Customers who rented more than average
+
+WITH rental_counts AS (
+	SELECT customer_id , COUNT(*) AS rental_count
+	FROM rental
+	GROUP BY customer_id ) , 
+avg_rental AS (
+	SELECT AVG(rental_count) AS avg_count  FROM rental_counts) 
+
+SELECT customer_id ,rental_count  FROM rental_counts , avg_rental
+WHERE rental_count > avg_count;
