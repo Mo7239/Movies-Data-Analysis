@@ -40,7 +40,7 @@ customer segmentation, and revenue trends.
 1.  Clone this repository:
 
     ``` bash
-    git clone https://github.com/your-username/retail-sales-dashboard.git
+    git clone https://github.com/Mo7239/Movies-Data-Analysis.git
     ```
 
 2.  Open the Tableau workbook (`.twbx`) in Tableau Desktop or Tableau
