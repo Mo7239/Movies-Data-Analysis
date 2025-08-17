@@ -19,7 +19,7 @@ customer segmentation, and revenue trends.
 
 -   `Retail_Sales_Dashboard.twbx` → Tableau packaged workbook with all
     dashboards and visualizations.\
--   `SQL_Queries/` → Folder containing all SQL scripts used in the
+-   `SQL_Queries/` →  containing all SQL scripts used in the
     analysis.
 
 ## 📌 Key Features of the Dashboard
