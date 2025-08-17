@@ -1,2 +1,72 @@
-# Movies-Data-Analysis
-Analyze movies data using SQL to get insights. Learn more about data to achieve business target.
+# Movies Data Analysis Dashboard
+
+
+## 📊 Project Overview
+
+This project focuses on analyzing **Retail Sales Data** using **SQL**
+for data extraction and cleaning, and **Tableau** for building an
+interactive dashboard.\
+The analysis provides insights into sales performance, top products,
+customer segmentation, and revenue trends.
+
+## 🛠️ Tools & Technologies
+
+-   **SQL**: For querying and preparing the data.
+-   **Tableau**: For creating interactive dashboards and visualizations.
+-   **GitHub**: For project version control and sharing.
+
+## 📂 Project Structure
+
+-   `Retail_Sales_Dashboard.twbx` → Tableau packaged workbook with all
+    dashboards and visualizations.\
+-   `SQL_Queries/` → Folder containing all SQL scripts used in the
+    analysis.
+
+## 📌 Key Features of the Dashboard
+
+1.  **Sales Overview**: Total revenue, total transactions, and average
+    order value.\
+2.  **Top Categories & Products**: Identifies best-selling product
+    categories and items.\
+3.  **Geographical Insights**: Sales distribution across different
+    regions.\
+4.  **Time Analysis**: Monthly and yearly revenue trends with dual-axis
+    charts for deeper insights.\
+5.  **Customer Segmentation**: Active vs. Non-active customers and their
+    contribution to sales.
+
+## 🚀 How to Use
+
+1.  Clone this repository:
+
+    ``` bash
+    git clone https://github.com/your-username/retail-sales-dashboard.git
+    ```
+
+2.  Open the Tableau workbook (`.twbx`) in Tableau Desktop or Tableau
+    Public.\
+
+3.  Review the `SQL_Queries` folder to understand how data was prepared.
+
+
+
+## 📈 Insights Gained
+
+-   Seasonal patterns in sales.\
+-   Top-performing categories and products.\
+-   Key customers driving the majority of revenue.\
+-   Regions with growth opportunities.
+
+
+
+## 👨‍💻 Author
+
+**Mohamed Wasef**\
+- [LinkedIn](https://www.linkedin.com/in/mohamed-wasef-789743233/)
+
+
+------------------------------------------------------------------------
+
+💡 *This project is part of a retail analytics case study using SQL &
+Tableau.*
+
