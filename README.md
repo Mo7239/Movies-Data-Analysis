@@ -17,7 +17,7 @@ customer segmentation, and revenue trends.
 
 ## 📂 Project Structure
 
--   `Retail_Sales_Dashboard.twbx` → Tableau packaged workbook with all
+-   `Movies Analysis.twbx` → Tableau packaged workbook with all
     dashboards and visualizations.\
 -   `SQL_Queries/` →  containing all SQL scripts used in the
     analysis.
@@ -57,6 +57,8 @@ customer segmentation, and revenue trends.
 -   Key customers driving the majority of revenue.\
 -   Regions with growth opportunities.
 
+
+<img width="1906" height="913" alt="image" src="https://github.com/user-attachments/assets/c0ad7c2f-6e39-40ca-91b5-60e7408c7f8e" />
 
 
 ## 👨‍💻 Author
